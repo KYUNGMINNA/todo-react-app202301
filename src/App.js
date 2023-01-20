@@ -4,6 +4,7 @@ import './App.css';
 //직접 컴포넌트화 해서 사용
 import Greeting from './components/Greeting'; //.js 생략해도 됨
 import FoodList from './components/FoodList';
+import Hello from './components/Hello';
 
 function App() {
   return (
@@ -11,10 +12,12 @@ function App() {
     //label for 대신 htmlFor 이런식으로 사용
 
     //부모 없이 형제 태그 만들 수 없어 의미 없는 태그 <> </> 사용
-    <> 
-      
-      <Greeting />
-      <FoodList />
+    <>    
+      {/* <Greeting />
+      <FoodList /> */}
+
+
+      <Hello />
 
     </>
   );

@@ -5,6 +5,7 @@ import './App.css';
 import Greeting from './components/Greeting'; //.js 생략해도 됨
 import FoodList from './components/FoodList';
 import Hello from './components/Hello';
+import ItemMain from './components/item/ItemMain';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <FoodList /> */}
 
 
-      <Hello />
+      <ItemMain />
 
     </>
   );

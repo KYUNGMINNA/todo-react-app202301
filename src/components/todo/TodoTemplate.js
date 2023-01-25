@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-
-//css 로딩
+// css 로딩
 import './css/TodoTemplate.css';
 import TodoHeader from './TodoHeader';
 import TodoInput from './TodoInput';
@@ -9,47 +8,60 @@ import TodoMain from './TodoMain';
 
 const TodoTemplate = () => {
 
-  //할 일 api 데이터 
-  const todos=[
-    {
-      id:1,
-      title:'아침 산책',
-      done:false
-      
-    },
-    {
-      id:2,
-      title:'오늘의 뉴스 읽기',
-      done:true
-      
-    },
-    {
-      id:3,
-      title:'샌드위치 사 먹기',
-      done:true
-      
-    },
-    {
-      id:4,
-      title:'리액트 공부하기',
-      done:true
-    
-    }
-  
-  
-  ];
+  const API_BASE_URL = 'http://localhost:8080/api/todos';
+
+  // 할일 api데이터
+  const [todos, setTodos] = useState([]);
+
+  //할 일 등록 서버 요청
+  const addTodo=(todo)=>{
+    fetch(API_BASE_URL,{
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(todo)
+    })
+    .then(res=>res.json())
+    .then(result=>{
+      //todos의 상태변화가 일어나면서 , 다시 렌더링이 되 갱신됨
+      setTodos(result.todos);
+    })
+  };
 
 
+ // 할 일 삭제 요청 처리
+ const deleteTodo = (id) => {
+
+  fetch(`${API_BASE_URL}/${id}`, {
+      method: 'DELETE'
+  })
+  .then(res => res.json())
+  .then(result => {
+      setTodos(result.todos);
+  });
+};
+
+
+
+
+
+  // 렌더링되자마자 할 일 => todos api GET 목록 호출
+  useEffect(() => {
+
+    fetch(API_BASE_URL)
+        .then(res => res.json())
+        .then(result => {
+            // console.log(result.todos);
+            setTodos(result.todos);
+        });
+
+  }, []);
 
 
   return (
-    <div className='todo-template'>
-              {/* 할 일 개수 세기 위함 */}
-            <TodoHeader todoList={todos} />
-            {/* 할 일 내용 보여주기 위함 */}
-            <TodoMain  todoList={todos} />
-            <TodoInput />
-
+    <div className="todo-template">
+        <TodoHeader todoList={todos} />
+        <TodoMain todoList={todos} remove={deleteTodo} />
+        <TodoInput add={addTodo} />
     </div>
   )
 }

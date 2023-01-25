@@ -1,6 +1,5 @@
 .todo-item{
     display: flex;
-    border: 1px solid #000;
     padding: 12px 0;
 
     /*교차축 중앙정렬*/
@@ -33,10 +32,24 @@
 }
 .todo-item .remove{
     font-size: 28px;
-    color: #f51b4f;
+    color: #ccc;
     cursor: pointer;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    
+
+    /* 휴지통 숨기기*/
+    display: none;
+}
+
+/*휴지통 보이기*/
+.todo-item:hover .remove{
+    display: block;
+}
+
+/* 휴지통 색상 변경*/
+.todo-item .remove:hover{
+    color: #f51b4f;
 }

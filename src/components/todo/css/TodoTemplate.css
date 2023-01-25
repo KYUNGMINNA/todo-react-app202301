@@ -18,4 +18,9 @@
     /*TodoInput 의 위치를 위해 선언*/
     position: relative;
 
+    /*개수 넘칠 때 방법*/
+    /*방법 2 */
+    display: flex;  
+    flex-direction: column;
+
 }

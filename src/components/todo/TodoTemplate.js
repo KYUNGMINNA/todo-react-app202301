@@ -40,6 +40,24 @@ const TodoTemplate = () => {
   });
 };
 
+//할 일 수정 처리 
+const modifyTodo=(id,title,done)=>{
+  const request={
+      'title':title,
+      'done':done
+  }
+  
+ fetch(`${API_BASE_URL}/${id}`, {
+  method: 'PATCH',
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify(request)
+})
+.then(res => res.json())
+.then(result => {
+  setTodos(result.todos);
+});
+};
+
 
 
 
@@ -60,7 +78,7 @@ const TodoTemplate = () => {
   return (
     <div className="todo-template">
         <TodoHeader todoList={todos} />
-        <TodoMain todoList={todos} remove={deleteTodo} />
+        <TodoMain todoList={todos} remove={deleteTodo} modify={modifyTodo}/>
         <TodoInput add={addTodo} />
     </div>
   )

@@ -6,6 +6,7 @@ import Greeting from './components/Greeting'; //.js 생략해도 됨
 import FoodList from './components/FoodList';
 import Hello from './components/Hello';
 import ItemMain from './components/item/ItemMain';
+import TodoTemplate from './components/todo/TodoTemplate';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <FoodList /> */}
 
 
-      <ItemMain />
+      <TodoTemplate />
 
     </>
   );

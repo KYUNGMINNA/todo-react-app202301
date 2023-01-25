@@ -1,0 +1,18 @@
+
+.todo-template{
+    width: 512px;
+    height: 768px;
+    /* border: 4px solid #000; */
+    border-radius: 16px;
+
+    /* 음영 처리 */
+    /*         x축,y축,블러크기,색상 */
+    box-shadow: 0 0 8px #aaa;
+
+    /* 상하 100  좌우 auto 
+        박스:block 요소 값의 x축 중앙 정렬 
+        마진 좌우 값을 auto로 설정 
+    */
+    margin: 100px auto;
+
+}

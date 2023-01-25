@@ -2,7 +2,7 @@ import cn from 'classnames';
 import React, { useState } from 'react';
 import {MdDone,MdDelete} from 'react-icons/md';
 import './css/TodoItem.css';
-const TodoItem = ({todo,remove,modify}) => {
+const TodoItem = ({todo,remove,update}) => {
 
     const {id,title,done}=todo;
 
@@ -15,7 +15,12 @@ const TodoItem = ({todo,remove,modify}) => {
     //할 일 완료 수정 처리 이벤트 핸들러
     const doneCheckHandler=e=>{
         //서버쪽으로 현재 done값의 반대 논리값을 전달 
-            modify(id,title,!done);
+            // modify(id,title,!done);
+            const modTodo={
+                ...todo,
+                done:!done
+            }
+            update(modTodo);
 
         //id,title,done 다 TodoTempalte에 전달
     };

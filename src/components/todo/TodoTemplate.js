@@ -41,16 +41,12 @@ const TodoTemplate = () => {
 };
 
 //할 일 수정 처리 
-const modifyTodo=(id,title,done)=>{
-  const request={
-      'title':title,
-      'done':done
-  }
-  
- fetch(`${API_BASE_URL}/${id}`, {
+const modifyTodo=(modTodo)=>{
+
+ fetch(`${API_BASE_URL}/${modTodo.id}`, {
   method: 'PATCH',
   headers: { 'content-type': 'application/json' },
-  body: JSON.stringify(request)
+  body: JSON.stringify(modTodo)
 })
 .then(res => res.json())
 .then(result => {
@@ -78,7 +74,7 @@ const modifyTodo=(id,title,done)=>{
   return (
     <div className="todo-template">
         <TodoHeader todoList={todos} />
-        <TodoMain todoList={todos} remove={deleteTodo} modify={modifyTodo}/>
+        <TodoMain todoList={todos} remove={deleteTodo} update={modifyTodo}/>
         <TodoInput add={addTodo} />
     </div>
   )

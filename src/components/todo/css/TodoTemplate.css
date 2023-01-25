@@ -15,4 +15,7 @@
     */
     margin: 100px auto;
 
+    /*TodoInput 의 위치를 위해 선언*/
+    position: relative;
+
 }

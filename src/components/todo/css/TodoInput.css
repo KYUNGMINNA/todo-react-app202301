@@ -1,0 +1,50 @@
+.todo-input{
+    background: #ddd;
+
+    /* position :absolute; 를 주면 기존의 width 가 깨져서 
+    직접 100%로 세팅 해야 함 */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+
+    /*padding을 사용 할 때 와 border사용 할때
+     box-sizing :border -box를 쓰자
+    -->padding사용하면 박스 사이즈 자체가 커지기 때문에 이를 방지하고자 씀
+    */
+    
+    padding: 32px 32px 72px;
+    box-sizing: border-box;
+}
+.todo-input input{
+    border: 1px solid #94989b;
+    font-size: 18px;
+    border-radius: 4px;
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    box-sizing: border-box;
+}
+.begin-btn{
+    background: #38d9a9;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 60px;
+    color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    left: 50%;
+    bottom:-5%;
+    transform: translate(-50%,0);
+    z-index: 10;
+
+    cursor: pointer;
+
+}

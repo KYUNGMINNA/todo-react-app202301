@@ -14,7 +14,7 @@ const TodoTemplate = () => {
     {
       id:1,
       title:'아침 산책',
-      done:true
+      done:false
       
     },
     {
@@ -26,13 +26,13 @@ const TodoTemplate = () => {
     {
       id:3,
       title:'샌드위치 사 먹기',
-      done:false
+      done:true
       
     },
     {
       id:4,
       title:'리액트 공부하기',
-      done:false
+      done:true
     
     }
   
@@ -44,7 +44,9 @@ const TodoTemplate = () => {
 
   return (
     <div className='todo-template'>
-            <TodoHeader />
+              {/* 할 일 개수 세기 위함 */}
+            <TodoHeader todoList={todos} />
+            {/* 할 일 내용 보여주기 위함 */}
             <TodoMain  todoList={todos} />
             <TodoInput />
 

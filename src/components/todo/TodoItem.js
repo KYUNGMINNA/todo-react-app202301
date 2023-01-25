@@ -1,6 +1,7 @@
-import React from 'react'
+import cn from 'classnames';
+import React from 'react';
 import {MdDone,MdDelete} from 'react-icons/md';
-import './css/TodoItem.css'
+import './css/TodoItem.css';
 const TodoItem = ({todo}) => {
 
     const {title,done}=todo;
@@ -9,10 +10,11 @@ const TodoItem = ({todo}) => {
   return (
   
     <li className="todo-item">
-        <div className='check-circle'>
+        <div className={cn('check-circle',{active:done})}>
             {done && <MdDone />}
         </div>
-        <span className='text'>{title}</span>
+            {/* done이 true면 finish라는 클래스 추가 아니면 안붙음 */}
+        <span className={cn('text',{finish:done})}>{title}</span>
         <div className='remove'>
             <MdDelete />
         </div>

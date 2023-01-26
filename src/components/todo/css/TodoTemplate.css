@@ -24,3 +24,17 @@
     flex-direction: column;
 
 }
+/* 로딩중 style */
+.loading{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+.loading .spinner-border{
+    height: 150px;
+    width: 150px;
+    ---bs-spinner-border-width:2rem;
+}
+

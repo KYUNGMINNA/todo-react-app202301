@@ -13,7 +13,7 @@
         박스:block 요소 값의 x축 중앙 정렬 
         마진 좌우 값을 auto로 설정 
     */
-    margin: 100px auto;
+    margin: 200px auto 100px;
 
     /*TodoInput 의 위치를 위해 선언*/
     position: relative;

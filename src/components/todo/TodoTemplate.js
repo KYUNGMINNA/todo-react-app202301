@@ -7,10 +7,14 @@ import TodoHeader from './TodoHeader';
 import TodoInput from './TodoInput';
 import TodoMain from './TodoMain';
 
-import { BASE_URL,TODO } from '../../config/host-config';
+import { BASE_URL, TODO } from '../../config/host-config';
+import { getToken } from '../util/login-util';
+
+
 const TodoTemplate = () => {
 
-  const API_BASE_URL=BASE_URL+TODO;
+  const API_BASE_URL = BASE_URL + TODO;
+  const ACCESS_TOKEN = getToken();
 
   // 할일 api데이터
   const [todos, setTodos] = useState([]);
@@ -18,11 +22,16 @@ const TodoTemplate = () => {
   //로딩중 상태 - 처음엔 로딩중 이후, 데이터 다 가져오면 false로 
   const [loading, setLoading] = useState(true);
 
+  const headerInfo = {
+    'content-type': 'application/json',
+    'Authorization': 'Bearer ' + ACCESS_TOKEN
+  };
+
   //할 일 등록 서버 요청
   const addTodo = (todo) => {
     fetch(API_BASE_URL, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: headerInfo,
       body: JSON.stringify(todo)
     })
       .then(res => res.json())
@@ -37,7 +46,8 @@ const TodoTemplate = () => {
   const deleteTodo = (id) => {
 
     fetch(`${API_BASE_URL}/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: headerInfo
     })
       .then(res => res.json())
       .then(result => {
@@ -45,12 +55,12 @@ const TodoTemplate = () => {
       });
   };
 
-  //할 일 수정 처리 
+  //할 일 수정 요청 처리 
   const modifyTodo = (modTodo) => {
 
     fetch(`${API_BASE_URL}/${modTodo.id}`, {
-      method: 'PATCH',
-      headers: { 'content-type': 'application/json' },
+      method: 'PUT',
+      headers: headerInfo,
       body: JSON.stringify(modTodo)
     })
       .then(res => res.json())
@@ -66,19 +76,22 @@ const TodoTemplate = () => {
   // 렌더링되자마자 할 일 => todos api GET 목록 호출
   useEffect(() => {
 
-    fetch(API_BASE_URL)
+    fetch(API_BASE_URL, {
+      method: 'GET',
+      headers: headerInfo
+    })
       .then(res => {
-        if(res.status===403){
+        if (res.status === 403) {
           alert('로그인이 필요한 서비스입니다!');
           //리다이렉트
-          window.location.href='/login';
+          window.location.href = '/login';
           return;
-        }else if(res.status===500){
+        } else if (res.status === 500) {
           alert('서버가 불안정합니다.');
           return;
         }
         return res.json();
-      
+
       })
       .then(result => {
         // console.log(result.todos);
@@ -110,8 +123,8 @@ const TodoTemplate = () => {
 
   return (
     <>
-    {/*loading : useSate의 상태변수  */}
-    {loading ? loadingPage:viewPage}
+      {/*loading : useSate의 상태변수  */}
+      {loading ? loadingPage : viewPage}
     </>
   )
 }

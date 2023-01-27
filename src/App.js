@@ -11,6 +11,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Join from './components/user/Join';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './components/user/Login';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
 
       <Header />
       {/* <TodoTemplate /> */}
-      <Join />
+      {/* <Join /> */}
+      <Login />
       <Footer />
 
     </>

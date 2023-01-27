@@ -127,6 +127,17 @@ const Join = () => {
 
     //비밀번호 입력란 검증 체인지 이벤트 핸들러
     const passwordHandler = e => {
+
+        //패스워드 확인란을 비워버리기
+        document.getElementById('password-check').value='';
+        document.getElementById('check-text').textContent='';
+        setValidate({
+            ...validate,passwordCheck:false
+        });
+
+
+
+
         //검증시작
         let msg;
         if (!e.target.value) { //패스워드 안적은 상황 
@@ -209,7 +220,6 @@ const Join = () => {
 
         //입력값 검증을 오바르게 수쟁했는지 검사
             if(isvalid()){
-                alert('회원가입 이제 보낼께~');
 
                 fetch(`${API_BASE_URL}/signup`,{
                     method:'POST',
@@ -222,6 +232,7 @@ const Join = () => {
                     if(res.status===200){
                         alert('회원가입을축하합니다.');
                         //로그인 페이지로 리다이렉트
+                        window.location.href = '/login';
                     }else{
                         alert('회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.');
                     }
@@ -312,11 +323,11 @@ const Join = () => {
                             name="passwordCheck"
                             label="패스워드확인"
                             type="password"
-                            id="password"
+                            id="password-check"
                             autoComplete="current-password"
                             onChange={passwordCheckHandler}
                         />
-                        <span style={
+                        <span  id="check-text" style={
                             validate.passwordCheck
                                 ? { color: 'green' }
                                 : { color: 'red' }
